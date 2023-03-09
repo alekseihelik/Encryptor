@@ -70,17 +70,13 @@ public class Encryptor
     public String encryptMessage(String message)
     {
         String encrypted = "";
-        int count = 0;
-        for(int i=0;i<numRows;i++){
-            for(int j=0;j<numCols;j++){
-                while(numRows*numCols*count+1<message.length()) {
-                    String str = message.substring(numCols * numRows * count, numCols * numRows * count + 1);
-                    fillBlock(str);
-                    encrypted += encryptBlock();
-                    count++;
-                }
-            }
+        while(message.length()>numRows*numCols){
+            fillBlock(message.substring(0,numCols*numRows));
+            encrypted += encryptBlock();
+            message = message.substring(numCols*numRows);
         }
+        fillBlock(message);
+        encrypted += encryptBlock();
         return encrypted;
     }
 
@@ -108,7 +104,37 @@ public class Encryptor
      */
     public String decryptMessage(String encryptedMessage)
     {
-        /* to be implemented in part (d) */
-        return "";
+        String decrypted = "";
+        String temp=encryptedMessage;
+        int splits=encryptedMessage.length()/(numCols*numRows);
+        while (splits>0) {
+            decryptBlock(temp);
+            encryptBlock();
+            for (String[] strings : letterBlock) {
+                for (int s = 0; s < letterBlock[0].length; s++) {
+                    if(strings[s].equals("A")&&(splits-1==0)){
+                        decrypted=decrypted;
+                    }else{
+                        decrypted += strings[s];
+                    }}
+            }
+            temp=temp.substring(numCols*numRows);
+            splits--;
+        }
+        return decrypted;
+    }
+
+    public void decryptBlock(String encrypted) {
+        int count=0;
+        for (int col = 0; col < letterBlock[0].length; col++) {
+            for (int row = 0; row < letterBlock.length; row++) {
+                if (row < encrypted.length()) {
+                    letterBlock[row][col] = encrypted.substring(count, count + 1);
+                    count++;
+                } else {
+                    letterBlock[row][col] = "A";
+                }
+            }
+        }
     }
 }

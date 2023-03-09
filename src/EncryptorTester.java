@@ -218,7 +218,6 @@ public class EncryptorTester
       System.out.println("  ACTUAL: " + actualEncrypted5);
     }
 
-/*    
     // -------------------------------------
     // ---- TEST PART D: decryptMessage ----
     // -------------------------------------
@@ -278,8 +277,9 @@ public class EncryptorTester
       System.out.println("  ACTUAL: " + actualDecrypted5);
     }
     
-    Encryptor encryptorTesterM = new Encryptor(2, 4);
-    String actualDecrypted6 = encryptorTesterM.decryptMessage("A BECFDGHC DA BEFAGBHC D HE FAGBCFDG HE!");
+    Encryptor encryptorTesterM = new Encryptor(6, 4);
+    String actualDecrypted6 = encryptorTesterM.decryptMessage("Pt    eifMDttooraoinr.s sesasth  rtsahbda vie rheAAAAArAAAAAeAAAAA:AAAAA");
+        System.out.println(actualDecrypted6);
     String expectedDecrypted6 = "ABCD EFGH ABCD EFGH ABCD EFGH ABCD EFGH!";
     if (actualDecrypted6.equals(expectedDecrypted6))
     {
@@ -291,7 +291,9 @@ public class EncryptorTester
       System.out.println("EXPECTED: " + expectedDecrypted6);
       System.out.println("  ACTUAL: " + actualDecrypted6);
     }
-*/
+
+
+
     }
 
     public static void print2DArray(String[][] arr)
