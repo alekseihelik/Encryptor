@@ -299,7 +299,7 @@ public class EncryptorTester
         System.out.println(message);
 
         Encryptor encryptorTester1 = new Encryptor(6,5);
-        String message1 = encryptorTester1.encryptMessage("This one time I was trying to do a handstand and fell backwards and landed on my shoe. It hurt! I won't try that again.");
+        String message1 = encryptorTester1.encryptMessage("This one time I wanted to do a handstand and fell backwards and landed on my shoe. It hurt! I won't try that again.");
         System.out.println(message1);
 
     }
